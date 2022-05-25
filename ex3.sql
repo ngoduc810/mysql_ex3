@@ -1,35 +1,93 @@
 -- qs2: 
-select * from testing_system_assignment.department;
+SELECT 
+    *
+FROM
+    testing_system_assignment.department;
 
 -- qs3:
-select departmentid from testing_system_assignment.department where DepartmentName like '%Sale%';
+SELECT 
+    departmentid
+FROM
+    testing_system_assignment.department
+WHERE
+    DepartmentName LIKE '%Sale%';
  
 -- qs4:
-select * from testing_system_assignment.account where length(fullname) = (select max(length(fullname)) from testing_system_assignment.account); 
+SELECT 
+    *
+FROM
+    testing_system_assignment.account
+WHERE
+    LENGTH(fullname) = (SELECT 
+            MAX(LENGTH(fullname))
+        FROM
+            testing_system_assignment.account); 
 
 -- qs6:
-select * from testing_system_assignment.group_table where CreateDate < '2019-12-20';
+SELECT 
+    *
+FROM
+    testing_system_assignment.group_table
+WHERE
+    CreateDate < '2019-12-20';
 
 -- qs8:
-select * from testing_system_assignment.exam where Duaration > '60' and CreateDate > '2019-12-20';
+SELECT 
+    *
+FROM
+    testing_system_assignment.exam
+WHERE
+    Duaration > '60'
+        AND CreateDate > '2019-12-20';
 
 -- qs9:
-select * from testing_system_assignment.group_table order by CreateDate desc limit 5; 
+SELECT 
+    *
+FROM
+    testing_system_assignment.group_table
+WHERE
+    CreateDate < CURDATE()
+ORDER BY CreateDate DESC
+LIMIT 5; 
 
 -- qs10: 
-select count(*) from testing_system_assignment.account where DepartmentID = 2;
+SELECT 
+    COUNT(*)
+FROM
+    testing_system_assignment.account
+WHERE
+    DepartmentID = 2;
 
 -- qs11: 
-select * from testing_system_assignment.account where FullName like 'D%' and FullName like '%a';
+SELECT 
+    *
+FROM
+    testing_system_assignment.account
+WHERE
+    FullName LIKE 'D%'
+        AND FullName LIKE '%a';
 
 -- qs12;
-delete from testing_system_assignment.exam where CreateDate = '2019-12-20';
+DELETE FROM testing_system_assignment.exam 
+WHERE
+    CreateDate = '2019-12-20';
 
 -- qs13:
-delete from testing_system_assignment.question where Content like 'What%';
+DELETE FROM testing_system_assignment.question 
+WHERE
+    Content LIKE 'What%';
 
 -- qs14:
-update testing_system_assignment.account set FullName = 'Nguyen Ba Loc', email = 'loc.nguyenba@vti.com' where AccountId = 5;
+UPDATE testing_system_assignment.account 
+SET 
+    FullName = 'Nguyen Ba Loc',
+    email = 'loc.nguyenba@vti.com'
+WHERE
+    AccountId = 5;
 
 -- qs15:
-update testing_system_assignment.group_account set GroupId = 4 where AccountID = 5;
+UPDATE testing_system_assignment.group_account 
+SET 
+    GroupId = 4
+WHERE
+    AccountID = 5;
