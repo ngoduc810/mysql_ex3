@@ -34,17 +34,17 @@ GROUP BY A.DepartmentID
 HAVING COUNT(A.DepartmentID) > 2;
 -- qs5:
 SELECT 
-    Q.*, count(CQ.CategoryID)
-FROM
-    testing_system_assignment.question AS Q
-        JOIN
-    testing_system_assignment.categoryquestion AS CQ ON Q.CategoryID = CQ.CategoryID
-GROUP BY CQ.CategoryID
-ORDER BY COUNT(CQ.CategoryID) DESC
-LIMIT 1;
+        Q.*, COUNT(CQ.CategoryID)
+    FROM
+        testing_system_assignment.question AS Q
+            JOIN
+        testing_system_assignment.exam AS CQ ON Q.CategoryID = CQ.CategoryID
+    GROUP BY CQ.CategoryID
+    ORDER BY COUNT(CQ.CategoryID) DESC
+    LIMIT 1;
 -- qs6:
 SELECT 
-    Q.*, count(CQ.CategoryID)
+    CQ.*, count(CQ.CategoryID)
 FROM
     testing_system_assignment.question AS Q
         JOIN
@@ -112,3 +112,12 @@ FROM
     testing_system_assignment.typequestion AS T ON Q.QuestionID = T.TypeID
 GROUP BY T.TypeName;
 -- qs14:
+SELECT 
+    *
+FROM
+    testing_system_assignment.account AS A
+        LEFT JOIN
+    testing_system_assignment.group_account AS G ON A.AccountID = G.AccountID
+WHERE
+    G.AccountID IS NULL;
+-- qs16:
