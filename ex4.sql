@@ -121,3 +121,11 @@ FROM
 WHERE
     G.AccountID IS NULL;
 -- qs16:
+SELECT 
+    *
+FROM
+    testing_system_assignment.question AS Q
+        LEFT JOIN
+    testing_system_assignment.answer AS A ON Q.QuestionID = A.QuestionID
+WHERE
+    A.QuestionID IS NULL;
