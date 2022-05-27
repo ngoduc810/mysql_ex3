@@ -60,21 +60,32 @@ FROM
 GROUP BY E.CategoryID;
 -- qs8:
 SELECT 
-    Q.*, COUNT(A.QuestionID)
+    *, COUNT(A.QuestionID)
 FROM
     testing_system_assignment.question AS Q
         JOIN
     testing_system_assignment.answer AS A ON Q.QuestionID = A.QuestionID
-GROUP BY Q.QuestionID
-ORDER BY COUNT(A.QuestionID) DESC
-LIMIT 1;
+GROUP BY A.QuestionID
+HAVING COUNT(A.QuestionID) = (SELECT 
+        Q2.*, COUNT(A2.QuestionID)
+    FROM
+        testing_system_assignment.question AS Q2
+            JOIN
+        testing_system_assignment.answer AS A2 ON Q2.QuestionID = A2.QuestionID
+    GROUP BY Q2.QuestionID
+    ORDER BY COUNT(A2.QuestionID) DESC
+    LIMIT 1);
 -- qs9:
 SELECT 
-    G.*, COUNT(G.AccountID)
+    G.*,
+    T.GroupName,
+    COUNT(G.AccountID) AS 'so luong account trong group'
 FROM
     testing_system_assignment.account AS A
-        JOIN
+        RIGHT JOIN
     testing_system_assignment.group_account AS G ON A.AccountID = G.AccountID
+        RIGHT JOIN
+    testing_system_assignment.group_table AS T ON G.GroupID = T.GroupID
 GROUP BY G.AccountID;
 -- qs10:
 SELECT 
